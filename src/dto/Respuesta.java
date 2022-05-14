@@ -4,40 +4,40 @@ import java.util.Date;
 
 public class Respuesta {
 
-    private int id;
-    private String nombre;
-    private int puntaje;
-    private Date fecha;
+    private int idRespuesta;
+    private String descripcion;
+    private int idPregunta;
+    private int respuestaCorrecta;
 
-    public int getId() {
-        return id;
+    public int getIdRespuesta() {
+        return idRespuesta;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdRespuesta(int idRespuesta) {
+        this.idRespuesta = idRespuesta;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
-    public int getPuntaje() {
-        return puntaje;
+    public int getIdPregunta() {
+        return idPregunta;
     }
 
-    public void setPuntaje(int puntaje) {
-        this.puntaje = puntaje;
+    public void setIdPregunta(int idPregunta) {
+        this.idPregunta = idPregunta;
     }
 
-    public Date getFecha() {
-        return fecha;
+    public int getRespuestaCorrecta() {
+        return respuestaCorrecta;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public void setRespuestaCorrecta(int respuestaCorrecta) {
+        this.respuestaCorrecta = respuestaCorrecta;
     }
 }
