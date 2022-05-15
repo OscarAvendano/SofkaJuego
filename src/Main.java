@@ -36,6 +36,7 @@ public class Main {
 
         while (nivel <= 5) {
             Pregunta pregunta = juego.obtenerPreguntasPorNivel(nivel);
+            System.out.println("Nivel " + nivel);
             System.out.println(pregunta.getDescripcion());
             List<Respuesta> respuestas = juego.obtenerRespuestasPorIdPregunta(pregunta.getIdPregunta());
             int secuenciaRespuestas = 1;
