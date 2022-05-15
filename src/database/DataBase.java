@@ -1,5 +1,6 @@
 package database;
 
+import dto.Jugador;
 import dto.Pregunta;
 import dto.Respuesta;
 import utilities.Conexion;
@@ -70,4 +71,47 @@ public class DataBase {
         return listaRespuestas;
     }
 
+    public int insertarJugador(Jugador jugador) {
+        String query = "INSERT INTO JUGADOR (id, nombre, puntaje, fecha) VALUES (?,?,?,?)";
+        Connection connection = conectarSQL();
+        int respuesta = 0;
+        if (connection != null) {
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setInt(1, jugador.getId());
+                preparedStatement.setString(2, jugador.getNombre());
+                preparedStatement.setInt(3, jugador.getPuntaje());
+                preparedStatement.setDate(4, jugador.getFecha());
+                respuesta = preparedStatement.executeUpdate();
+                preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return respuesta;
+    }
+
+    public List<Jugador> obtenerHistoricoJugadores() {
+        List<Jugador> listaJugadores = new ArrayList<>();
+        String query = "SELECT * FROM JUGADOR ORDER BY puntaje DESC";
+        Connection connection = conectarSQL();
+        if (connection != null) {
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()) {
+                    Jugador jugador = new Jugador();
+                    jugador.setId(resultSet.getInt(1));
+                    jugador.setNombre(resultSet.getString(2));
+                    jugador.setPuntaje(resultSet.getInt(3));
+                    jugador.setFecha(resultSet.getDate(4));
+                    listaJugadores.add(jugador);
+                }
+                resultSet.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return listaJugadores;
+    }
 }
